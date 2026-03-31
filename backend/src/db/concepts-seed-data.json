@@ -1,0 +1,452 @@
+[
+    {
+      "topic": "React Server Components",
+      "category": "Frontend Architecture",
+      "difficulty": "senior",
+      "generatedPrompt": "Explain how React Server Components work and what problems they solve compared to traditional client-side React"
+    },
+    {
+      "topic": "Virtual DOM reconciliation",
+      "category": "Frontend Architecture",
+      "difficulty": "mid",
+      "generatedPrompt": "Walk me through how React's Virtual DOM diffing algorithm works and why it improves performance"
+    },
+    {
+      "topic": "CSS-in-JS performance tradeoffs",
+      "category": "Frontend Architecture",
+      "difficulty": "senior",
+      "generatedPrompt": "Compare CSS-in-JS solutions versus traditional CSS in terms of runtime performance and bundle size"
+    },
+    {
+      "topic": "React useEffect cleanup",
+      "category": "Frontend Architecture",
+      "difficulty": "mid",
+      "generatedPrompt": "Explain when and why you need cleanup functions in useEffect, with concrete examples"
+    },
+    {
+      "topic": "Intersection Observer API",
+      "category": "Frontend Architecture",
+      "difficulty": "mid",
+      "generatedPrompt": "How would you implement infinite scroll using the Intersection Observer API?"
+    },
+    {
+      "topic": "Redux vs Context API",
+      "category": "Frontend Architecture",
+      "difficulty": "mid",
+      "generatedPrompt": "When would you choose Redux over React Context, and what are the performance implications?"
+    },
+    {
+      "topic": "Web Vitals optimization",
+      "category": "Frontend Architecture",
+      "difficulty": "senior",
+      "generatedPrompt": "Explain Core Web Vitals (LCP, FID, CLS) and strategies to optimize each one"
+    },
+    {
+      "topic": "Code splitting strategies",
+      "category": "Frontend Architecture",
+      "difficulty": "senior",
+      "generatedPrompt": "Describe different approaches to code splitting in a React app and when to use each"
+    },
+    {
+      "topic": "Browser rendering pipeline",
+      "category": "Frontend Architecture",
+      "difficulty": "senior",
+      "generatedPrompt": "Walk through the critical rendering path from HTML parsing to pixels on screen"
+    },
+    {
+      "topic": "React Suspense and Concurrent Mode",
+      "category": "Frontend Architecture",
+      "difficulty": "staff",
+      "generatedPrompt": "Explain how React's Concurrent features work and their impact on component rendering order"
+    },
+    {
+      "topic": "TypeScript generics",
+      "category": "Frontend Architecture",
+      "difficulty": "mid",
+      "generatedPrompt": "Explain TypeScript generics and provide examples of when you'd use them in React components"
+    },
+    {
+      "topic": "Accessibility tree",
+      "category": "Frontend Architecture",
+      "difficulty": "senior",
+      "generatedPrompt": "Explain what the accessibility tree is and how screen readers use it to navigate web pages"
+    },
+    {
+      "topic": "Service Worker lifecycle",
+      "category": "Frontend Architecture",
+      "difficulty": "senior",
+      "generatedPrompt": "Walk through the Service Worker lifecycle and explain caching strategies for offline support"
+    },
+    {
+      "topic": "React memo and useMemo",
+      "category": "Frontend Architecture",
+      "difficulty": "mid",
+      "generatedPrompt": "Explain the difference between React.memo and useMemo, and when to use each"
+    },
+    {
+      "topic": "Monorepo tooling",
+      "category": "Frontend Architecture",
+      "difficulty": "senior",
+      "generatedPrompt": "Compare monorepo tools like Turborepo, Nx, and Lerna for managing multiple frontend packages"
+    },
+    {
+      "topic": "Webpack vs Vite",
+      "category": "Frontend Architecture",
+      "difficulty": "mid",
+      "generatedPrompt": "Explain how Vite achieves faster build times compared to Webpack"
+    },
+    {
+      "topic": "State machine patterns",
+      "category": "Frontend Architecture",
+      "difficulty": "senior",
+      "generatedPrompt": "Describe when and how to use state machines (like XState) for complex UI state management"
+    },
+    {
+      "topic": "WebAssembly integration",
+      "category": "Frontend Architecture",
+      "difficulty": "staff",
+      "generatedPrompt": "Explain when you'd use WebAssembly in a web application and how to integrate it with JavaScript"
+    },
+    {
+      "topic": "Hydration in SSR",
+      "category": "Frontend Architecture",
+      "difficulty": "senior",
+      "generatedPrompt": "Explain what hydration means in server-side rendering and common pitfalls to avoid"
+    },
+    {
+      "topic": "React Error Boundaries",
+      "category": "Frontend Architecture",
+      "difficulty": "mid",
+      "generatedPrompt": "How do Error Boundaries work in React and what errors can they NOT catch?"
+    },
+    {
+      "topic": "CSS Grid vs Flexbox",
+      "category": "Frontend Architecture",
+      "difficulty": "mid",
+      "generatedPrompt": "When would you choose CSS Grid over Flexbox for layout, and why?"
+    },
+    {
+      "topic": "Browser caching strategies",
+      "category": "Frontend Architecture",
+      "difficulty": "mid",
+      "generatedPrompt": "Explain different HTTP caching headers and when to use each for static assets"
+    },
+    {
+      "topic": "Load balancer algorithms",
+      "category": "System Design",
+      "difficulty": "senior",
+      "generatedPrompt": "Compare round-robin, least connections, and consistent hashing for load balancing"
+    },
+    {
+      "topic": "Database replication",
+      "category": "System Design",
+      "difficulty": "senior",
+      "generatedPrompt": "Explain master-slave vs master-master replication and their tradeoffs"
+    },
+    {
+      "topic": "CAP theorem",
+      "category": "System Design",
+      "difficulty": "senior",
+      "generatedPrompt": "Explain the CAP theorem and give examples of systems that prioritize different properties"
+    },
+    {
+      "topic": "API rate limiting",
+      "category": "System Design",
+      "difficulty": "mid",
+      "generatedPrompt": "Design a rate limiting system for an API. What algorithms would you consider?"
+    },
+    {
+      "topic": "Content delivery networks",
+      "category": "System Design",
+      "difficulty": "mid",
+      "generatedPrompt": "Explain how CDNs work and when they provide the most value"
+    },
+    {
+      "topic": "Message queue patterns",
+      "category": "System Design",
+      "difficulty": "senior",
+      "generatedPrompt": "Compare pub-sub vs point-to-point messaging patterns and when to use each"
+    },
+    {
+      "topic": "Database sharding",
+      "category": "System Design",
+      "difficulty": "staff",
+      "generatedPrompt": "Explain database sharding strategies and how to handle cross-shard queries"
+    },
+    {
+      "topic": "Idempotency in APIs",
+      "category": "System Design",
+      "difficulty": "senior",
+      "generatedPrompt": "Why is idempotency important in distributed systems and how do you implement it?"
+    },
+    {
+      "topic": "Circuit breaker pattern",
+      "category": "System Design",
+      "difficulty": "senior",
+      "generatedPrompt": "Explain the circuit breaker pattern and when it prevents cascading failures"
+    },
+    {
+      "topic": "Webhook reliability",
+      "category": "System Design",
+      "difficulty": "mid",
+      "generatedPrompt": "How would you design a reliable webhook delivery system with retries and dead letter queues?"
+    },
+    {
+      "topic": "API versioning strategies",
+      "category": "System Design",
+      "difficulty": "mid",
+      "generatedPrompt": "Compare URL versioning, header versioning, and content negotiation for APIs"
+    },
+    {
+      "topic": "Consistent hashing",
+      "category": "System Design",
+      "difficulty": "senior",
+      "generatedPrompt": "Explain consistent hashing and how it's used in distributed caching systems"
+    },
+    {
+      "topic": "Event sourcing",
+      "category": "System Design",
+      "difficulty": "staff",
+      "generatedPrompt": "Explain event sourcing architecture and its advantages over CRUD systems"
+    },
+    {
+      "topic": "Saga pattern",
+      "category": "System Design",
+      "difficulty": "staff",
+      "generatedPrompt": "Describe the saga pattern for distributed transactions and how it handles failures"
+    },
+    {
+      "topic": "Read replicas",
+      "category": "System Design",
+      "difficulty": "mid",
+      "generatedPrompt": "When would you use read replicas and what consistency issues might arise?"
+    },
+    {
+      "topic": "API gateway pattern",
+      "category": "System Design",
+      "difficulty": "senior",
+      "generatedPrompt": "Explain the role of an API gateway in microservices architecture"
+    },
+    {
+      "topic": "Distributed tracing",
+      "category": "System Design",
+      "difficulty": "senior",
+      "generatedPrompt": "How does distributed tracing work and what information does it capture?"
+    },
+    {
+      "topic": "Service mesh",
+      "category": "System Design",
+      "difficulty": "staff",
+      "generatedPrompt": "Explain what a service mesh is and what problems it solves in microservices"
+    },
+    {
+      "topic": "Caching layers",
+      "category": "System Design",
+      "difficulty": "mid",
+      "generatedPrompt": "Design a multi-layer caching strategy for a web application"
+    },
+    {
+      "topic": "Docker container isolation",
+      "category": "Infrastructure",
+      "difficulty": "senior",
+      "generatedPrompt": "Explain how Docker achieves process isolation using Linux namespaces and cgroups"
+    },
+    {
+      "topic": "Kubernetes pod networking",
+      "category": "Infrastructure",
+      "difficulty": "senior",
+      "generatedPrompt": "Explain how pods communicate with each other in Kubernetes"
+    },
+    {
+      "topic": "Blue-green deployment",
+      "category": "Infrastructure",
+      "difficulty": "mid",
+      "generatedPrompt": "Describe blue-green deployment strategy and when you'd use it over rolling updates"
+    },
+    {
+      "topic": "CI/CD pipeline stages",
+      "category": "Infrastructure",
+      "difficulty": "mid",
+      "generatedPrompt": "Walk through the stages of a typical CI/CD pipeline and what happens in each"
+    },
+    {
+      "topic": "Container orchestration",
+      "category": "Infrastructure",
+      "difficulty": "senior",
+      "generatedPrompt": "Compare Docker Swarm and Kubernetes for container orchestration"
+    },
+    {
+      "topic": "Infrastructure as Code",
+      "category": "Infrastructure",
+      "difficulty": "mid",
+      "generatedPrompt": "Explain the benefits of Infrastructure as Code and compare Terraform vs CloudFormation"
+    },
+    {
+      "topic": "Log aggregation",
+      "category": "Infrastructure",
+      "difficulty": "mid",
+      "generatedPrompt": "How would you design a centralized logging system for microservices?"
+    },
+    {
+      "topic": "Health checks and liveness probes",
+      "category": "Infrastructure",
+      "difficulty": "mid",
+      "generatedPrompt": "Explain the difference between liveness and readiness probes in Kubernetes"
+    },
+    {
+      "topic": "Docker multi-stage builds",
+      "category": "Infrastructure",
+      "difficulty": "mid",
+      "generatedPrompt": "Explain multi-stage Docker builds and why they reduce image size"
+    },
+    {
+      "topic": "Zero-downtime deployments",
+      "category": "Infrastructure",
+      "difficulty": "senior",
+      "generatedPrompt": "What strategies ensure zero-downtime deployments for database schema changes?"
+    },
+    {
+      "topic": "Horizontal vs vertical scaling",
+      "category": "Infrastructure",
+      "difficulty": "mid",
+      "generatedPrompt": "Compare horizontal and vertical scaling, and when each is appropriate"
+    },
+    {
+      "topic": "TLS/SSL handshake",
+      "category": "Infrastructure",
+      "difficulty": "senior",
+      "generatedPrompt": "Walk through the TLS handshake process and explain how certificates are verified"
+    },
+    {
+      "topic": "Reverse proxy vs forward proxy",
+      "category": "Infrastructure",
+      "difficulty": "mid",
+      "generatedPrompt": "Explain the difference between reverse and forward proxies with examples"
+    },
+    {
+      "topic": "Prometheus metrics",
+      "category": "Infrastructure",
+      "difficulty": "senior",
+      "generatedPrompt": "Explain the four metric types in Prometheus and when to use each"
+    },
+    {
+      "topic": "DNS resolution flow",
+      "category": "Infrastructure",
+      "difficulty": "mid",
+      "generatedPrompt": "Walk through what happens when you type a URL into a browser"
+    },
+    {
+      "topic": "Binary search tree operations",
+      "category": "Fundamentals",
+      "difficulty": "mid",
+      "generatedPrompt": "Explain insertion, deletion, and search in a binary search tree with time complexity"
+    },
+    {
+      "topic": "Hash table collisions",
+      "category": "Fundamentals",
+      "difficulty": "mid",
+      "generatedPrompt": "How do hash tables handle collisions? Compare chaining vs open addressing"
+    },
+    {
+      "topic": "Depth-first vs breadth-first search",
+      "category": "Fundamentals",
+      "difficulty": "mid",
+      "generatedPrompt": "When would you use DFS over BFS for graph traversal?"
+    },
+    {
+      "topic": "Dynamic programming",
+      "category": "Fundamentals",
+      "difficulty": "senior",
+      "generatedPrompt": "Explain dynamic programming and walk through a classic example like coin change"
+    },
+    {
+      "topic": "Big O notation",
+      "category": "Fundamentals",
+      "difficulty": "mid",
+      "generatedPrompt": "Explain Big O notation and identify the time complexity of common operations"
+    },
+    {
+      "topic": "Quicksort partitioning",
+      "category": "Fundamentals",
+      "difficulty": "mid",
+      "generatedPrompt": "Explain how quicksort partitioning works and its average vs worst case complexity"
+    },
+    {
+      "topic": "Trie data structure",
+      "category": "Fundamentals",
+      "difficulty": "senior",
+      "generatedPrompt": "Explain how a trie works and when you'd use it over a hash table"
+    },
+    {
+      "topic": "Graph cycle detection",
+      "category": "Fundamentals",
+      "difficulty": "senior",
+      "generatedPrompt": "How would you detect a cycle in a directed graph?"
+    },
+    {
+      "topic": "Heap data structure",
+      "category": "Fundamentals",
+      "difficulty": "mid",
+      "generatedPrompt": "Explain how a min-heap works and its time complexity for operations"
+    },
+    {
+      "topic": "Sliding window technique",
+      "category": "Fundamentals",
+      "difficulty": "mid",
+      "generatedPrompt": "Explain the sliding window pattern with an example problem"
+    },
+    {
+      "topic": "Two pointers technique",
+      "category": "Fundamentals",
+      "difficulty": "mid",
+      "generatedPrompt": "When would you use the two pointers technique and how does it work?"
+    },
+    {
+      "topic": "SQL ACID properties",
+      "category": "Backend/Database",
+      "difficulty": "senior",
+      "generatedPrompt": "Explain each ACID property and how databases implement them"
+    },
+    {
+      "topic": "Database indexing strategies",
+      "category": "Backend/Database",
+      "difficulty": "senior",
+      "generatedPrompt": "When would you create a composite index vs multiple single-column indexes?"
+    },
+    {
+      "topic": "N+1 query problem",
+      "category": "Backend/Database",
+      "difficulty": "mid",
+      "generatedPrompt": "Explain the N+1 query problem and how to solve it"
+    },
+    {
+      "topic": "Database normalization",
+      "category": "Backend/Database",
+      "difficulty": "mid",
+      "generatedPrompt": "Explain database normalization and when denormalization makes sense"
+    },
+    {
+      "topic": "Connection pooling",
+      "category": "Backend/Database",
+      "difficulty": "mid",
+      "generatedPrompt": "Why is connection pooling important and how does it work?"
+    },
+    {
+      "topic": "SQL JOIN types",
+      "category": "Backend/Database",
+      "difficulty": "mid",
+      "generatedPrompt": "Explain the difference between INNER, LEFT, RIGHT, and FULL OUTER joins"
+    },
+    {
+      "topic": "Database transaction isolation levels",
+      "category": "Backend/Database",
+      "difficulty": "staff",
+      "generatedPrompt": "Explain the four SQL isolation levels and what concurrency issues each prevents"
+    },
+    {
+      "topic": "Optimistic vs pessimistic locking",
+      "category": "Backend/Database",
+      "difficulty": "senior",
+      "generatedPrompt": "Compare optimistic and pessimistic locking strategies in databases"
+    }
+  ]
