@@ -65,6 +65,9 @@ export function queryAll<T>(sql: string, params?: SqlParams): T[] {
   });
 }
 
+/** Alias for queryAll to match route-layer naming */
+export const query = queryAll;
+
 export function queryOne<T>(sql: string, params?: SqlParams): T | undefined {
   return withDbError('queryOne', () => {
     const statement = db.prepare(sql);

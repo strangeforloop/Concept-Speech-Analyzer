@@ -8,7 +8,7 @@ const PORT = Number(process.env.PORT) || 3000;
 export function createApp(): Express {
   const app = express();
 
-  app.use(express.json({ limit: '25mb' }));
+  app.use(express.json({ limit: '50mb' }));
 
   app.use('/api/concepts', conceptsRouter);
   app.use('/api/attempts', attemptsRouter);
