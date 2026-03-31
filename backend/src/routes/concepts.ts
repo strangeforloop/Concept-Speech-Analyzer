@@ -30,13 +30,14 @@ interface AttemptRow {
 type ConceptWithCount = Concept & { attempt_count: number };
 
 function toConcept(row: ConceptRow): Concept {
+  const createdAtUnix = Math.floor(new Date(row.created_at).getTime() / 1000);
   return {
     id: row.id,
     topic: row.topic,
     category: row.category,
     difficulty: row.difficulty,
-    generatedPrompt: row.generated_prompt,
-    createdAt: row.created_at
+    generated_prompt: row.generated_prompt,
+    created_at: Number.isFinite(createdAtUnix) ? createdAtUnix : 0
   };
 }
 
@@ -59,7 +60,7 @@ function toAttempt(row: AttemptRow): Attempt {
     transcription: row.transcription,
     aiAnalysis: JSON.parse(analysisRaw) as Attempt['aiAnalysis'],
     durationSeconds: row.duration_seconds,
-    attemptedAt: row.attempted_at
+    attemptedAt: Number(row.attempted_at)
   };
 }
 

@@ -3,8 +3,8 @@ import { randomUUID } from 'node:crypto';
 import Anthropic from '@anthropic-ai/sdk';
 import OpenAI from 'openai';
 import { toFile } from 'openai/uploads';
-import { queryOne, run } from '../db/database.js';
-import type { AiAnalysis, CreateAttemptBody, CreateAttemptResponse } from '../types/index.js';
+import { query, queryOne, run } from '../db/database.js';
+import type { AIAnalysis, CreateAttemptBody, CreateAttemptResponse } from '../types/index.js';
 
 const router = Router();
 
@@ -12,6 +12,29 @@ interface ConceptRow {
   id: string;
   topic: string;
   generated_prompt: string;
+}
+
+interface AttemptRow {
+  id: string;
+  concept_id: string;
+  transcription: string;
+  ai_analysis: string;
+  duration_seconds: number;
+  attempted_at: string | number;
+}
+
+function toAttempt(row: AttemptRow): CreateAttemptResponse {
+  return {
+    id: row.id,
+    conceptId: row.concept_id,
+    transcription: row.transcription,
+    aiAnalysis: JSON.parse(row.ai_analysis) as AIAnalysis,
+    durationSeconds: row.duration_seconds,
+    attemptedAt:
+      typeof row.attempted_at === 'number'
+        ? row.attempted_at
+        : Number.parseInt(String(row.attempted_at), 10) || Math.floor(new Date(row.attempted_at).getTime() / 1000) || 0
+  };
 }
 
 function extractAnthropicText(message: Anthropic.Message): string {
@@ -22,9 +45,9 @@ function extractAnthropicText(message: Anthropic.Message): string {
     .trim();
 }
 
-function parseAnalysis(text: string): AiAnalysis {
+function parseAnalysis(text: string): AIAnalysis {
   const jsonText = text.replace(/```(?:json)?\s*([\s\S]*?)\s*```/i, '$1').trim();
-  const parsed = JSON.parse(jsonText) as Partial<AiAnalysis>;
+  const parsed = JSON.parse(jsonText) as Partial<AIAnalysis>;
 
   if (
     typeof parsed.score !== 'number' ||
@@ -44,6 +67,32 @@ function parseAnalysis(text: string): AiAnalysis {
 }
 
 /**
+ * GET /api/attempts?conceptId=<id> — list attempts (optional concept filter), newest first
+ */
+router.get(
+  '/',
+  (req: Request<object, CreateAttemptResponse[] | { error: string }, object, { conceptId?: string }>, res: Response) => {
+    try {
+      const conceptId = req.query.conceptId;
+
+      const rows =
+        conceptId && conceptId.length > 0
+          ? query<AttemptRow>(
+              'SELECT * FROM attempts WHERE concept_id = ? ORDER BY attempted_at DESC',
+              [conceptId]
+            )
+          : query<AttemptRow>('SELECT * FROM attempts ORDER BY attempted_at DESC');
+
+      res.json(rows.map(toAttempt));
+    } catch (error) {
+      console.error('Failed to fetch attempts:', error);
+      const message = error instanceof Error ? error.message : String(error);
+      res.status(500).json({ error: message });
+    }
+  }
+);
+
+/**
  * POST /api/attempts — submit audio; transcribe with Whisper, analyze with Anthropic, persist
  */
 router.post(
@@ -53,12 +102,7 @@ router.post(
     res: Response
   ) => {
     try {
-      console.log('Request body keys:', Object.keys(req.body));
-      console.log('conceptId:', req.body.conceptId);
-      console.log('audioBlob length:', req.body.audioBlob?.length);
-      console.log('durationSeconds:', req.body.durationSeconds);
-    
-    const { conceptId, audioBlob, durationSeconds } = req.body;
+      const { conceptId, audioBlob, durationSeconds } = req.body;
 
       if (!conceptId || !audioBlob || typeof durationSeconds !== 'number') {
         res.status(400).json({ error: 'Missing required fields: conceptId, audioBlob, durationSeconds' });
@@ -85,12 +129,7 @@ router.post(
       const anthropicClient = new Anthropic({ apiKey: anthropicApiKey });
       const openAiClient = new OpenAI({ apiKey: openAiApiKey });
 
-      const audioBuffer =
-        typeof audioBlob === 'string'
-          ? Buffer.from(audioBlob, 'base64')
-          : Buffer.isBuffer(audioBlob)
-            ? audioBlob
-            : Buffer.from(audioBlob as unknown as Uint8Array);
+      const audioBuffer = Buffer.from(audioBlob, 'base64');
 
       if (audioBuffer.length === 0) {
         res.status(400).json({ error: 'audioBlob is empty' });
@@ -149,7 +188,7 @@ Scoring guide:
       });
 
       const analysisText = extractAnthropicText(analysisResponse);
-      let analysis: AiAnalysis;
+      let analysis: AIAnalysis;
       try {
         analysis = parseAnalysis(analysisText);
       } catch (error) {
@@ -161,7 +200,7 @@ Scoring guide:
       console.log(`Analysis complete. Score: ${analysis.score}/10`);
 
       const attemptId = randomUUID();
-      const attemptedAt = new Date().toISOString();
+      const attemptedAt = Math.floor(Date.now() / 1000);
 
       run(
         `INSERT INTO attempts (id, concept_id, transcription, ai_analysis, duration_seconds, attempted_at)

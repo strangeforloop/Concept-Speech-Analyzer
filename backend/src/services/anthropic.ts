@@ -1,5 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
-import type { AiAnalysis } from '../types/index.js';
+import type { AIAnalysis } from '../types/index.js';
 
 export interface AnthropicServiceConfig {
   apiKey: string;
@@ -30,7 +30,7 @@ export class AnthropicService {
     throw new Error('Not implemented');
   }
 
-  analyzeExplanation(_transcription: string): Promise<AiAnalysis> {
+  analyzeExplanation(_transcription: string): Promise<AIAnalysis> {
     void _transcription;
     throw new Error('Not implemented');
   }

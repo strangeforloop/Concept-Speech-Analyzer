@@ -6,11 +6,12 @@ export interface Concept {
   topic: string;
   category: string;
   difficulty: Difficulty;
-  generatedPrompt: string;
-  createdAt: string;
+  generated_prompt: string;
+  created_at: number;
+  attempt_count?: number;
 }
 
-export interface AiAnalysis {
+export interface AIAnalysis {
   score: number;
   strengths: string[];
   gaps: string[];
@@ -21,20 +22,15 @@ export interface Attempt {
   id: string;
   conceptId: string;
   transcription: string;
-  aiAnalysis: AiAnalysis;
+  aiAnalysis: AIAnalysis;
   durationSeconds: number;
-  attemptedAt: string;
-}
-
-/** Concept row as returned from list endpoints */
-export interface ConceptWithAttemptCount extends Concept {
-  attemptCount: number;
+  attemptedAt: number;
 }
 
 /** Request body for POST /api/attempts (audio as raw bytes or base64 string TBD) */
 export interface CreateAttemptBody {
   conceptId: string;
-  audioBlob: Buffer;
+  audioBlob: string;
   durationSeconds: number;
 }
 
