@@ -1,0 +1,4 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+export function ConceptCard({ concept, onClick }) {
+    return (_jsxs("button", { type: "button", onClick: onClick, className: "w-full rounded-xl bg-white p-5 text-left shadow-sm transition hover:shadow-md", children: [_jsx("h3", { className: "mb-3 text-lg font-semibold", children: concept.topic }), _jsxs("div", { className: "mb-4 flex gap-2", children: [_jsx("span", { className: "rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700", children: concept.category }), _jsx("span", { className: "rounded-full bg-blue-100 px-2.5 py-1 text-xs font-medium text-blue-700", children: concept.difficulty })] }), _jsxs("p", { className: "text-sm text-slate-600", children: ["Attempts: ", _jsx("span", { className: "font-semibold", children: concept.attempt_count ?? 0 })] })] }));
+}
