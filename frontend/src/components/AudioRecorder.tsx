@@ -67,21 +67,23 @@ export function AudioRecorder({ onRecordingComplete }: AudioRecorderProps) {
   };
 
   return (
-    <div className="space-y-3 rounded-xl bg-white p-4 shadow-sm">
+    <div className="space-y-3 rounded-xl border border-neutral-200 bg-white p-4 shadow-sm">
       <div className="flex items-center gap-3">
         <button
           type="button"
           onClick={isRecording ? stopRecording : startRecording}
-          className={`rounded-lg px-5 py-3 text-white ${
-            isRecording ? 'bg-danger hover:bg-red-600' : 'bg-brand hover:bg-blue-600'
+          className={`rounded-lg px-5 py-3 font-medium ${
+            isRecording
+              ? 'bg-primary-200 text-primary-600 hover:bg-primary-300'
+              : 'bg-primary-200 text-primary-700 hover:bg-primary-300'
           }`}
         >
-          {isRecording ? 'Stop Recording' : 'Start Recording'}
+          {isRecording ? 'Recording...' : 'Start Recording'}
         </button>
-        <div className="text-sm font-medium text-slate-700">Timer: {duration}s</div>
-        {isRecording ? <div className="h-3 w-3 animate-pulse rounded-full bg-danger" /> : null}
+        <div className="text-sm font-medium text-neutral-700">Timer: {duration}s</div>
+        {isRecording ? <div className="h-3 w-3 animate-pulse rounded-full bg-primary-400" /> : null}
       </div>
-      {error ? <p className="text-sm text-danger">{error}</p> : null}
+      {error ? <p className="text-sm text-warning-400">{error}</p> : null}
     </div>
   );
 }

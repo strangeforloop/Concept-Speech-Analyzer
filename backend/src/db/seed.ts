@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import Anthropic from '@anthropic-ai/sdk';
 import { queryOne, run, transaction } from './database.js';
 import type { Difficulty } from '../types/index.js';
+import { readFileSync } from 'node:fs';
 
 interface SeedConcept {
   topic: string;
@@ -68,16 +69,16 @@ function unwrapJsonEnvelope(raw: string): string {
   return (fenced?.[1] ?? raw).trim();
 }
 
-function normalizeConceptCount(concepts: SeedConcept[]): SeedConcept[] {
+function normalizeConceptCount(concepts: SeedConcept[], sourceLabel: string): SeedConcept[] {
   if (concepts.length < EXPECTED_CONCEPT_COUNT) {
     throw new Error(
-      `Expected at least ${EXPECTED_CONCEPT_COUNT} concepts from Anthropic, but received ${concepts.length}.`
+      `Expected at least ${EXPECTED_CONCEPT_COUNT} concepts (${sourceLabel}), but received ${concepts.length}.`
     );
   }
 
   if (concepts.length > EXPECTED_CONCEPT_COUNT) {
     console.warn(
-      `Anthropic returned ${concepts.length} concepts. Trimming to ${EXPECTED_CONCEPT_COUNT}.`
+      `${sourceLabel}: received ${concepts.length} concepts; trimming to ${EXPECTED_CONCEPT_COUNT}.`
     );
   }
 
@@ -177,11 +178,37 @@ Do not include markdown code fences.`;
   }
 
   const concepts = parsed.map((item, index) => validateConcept(item, index));
-  return normalizeConceptCount(concepts);
+  return normalizeConceptCount(concepts, 'Anthropic');
 }
 
 /**
- * Seeds canonical concepts from Anthropic if concepts table is empty.
+ * Loads concepts from concepts-seed-data.json next to this module (src/db/).
+ */
+function loadConceptsFromFile(): SeedConcept[] {
+  const seedDir = path.dirname(fileURLToPath(import.meta.url));
+  const filePath = path.join(seedDir, 'concepts-seed-data.json');
+
+  console.log('Loading concepts from:', filePath);
+  const fileContent = readFileSync(filePath, 'utf8');
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(fileContent);
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    throw new Error(`Invalid JSON in concepts-seed-data.json: ${msg}`);
+  }
+
+  if (!Array.isArray(parsed)) {
+    throw new Error('concepts-seed-data.json must contain a JSON array.');
+  }
+
+  const concepts = parsed.map((item, index) => validateConcept(item, index));
+  return normalizeConceptCount(concepts, 'concepts-seed-data.json');
+}
+
+/**
+ * Seeds canonical concepts from concepts-seed-data.json if concepts table is empty.
  */
 export async function runSeed(): Promise<void> {
   try {
@@ -194,13 +221,16 @@ export async function runSeed(): Promise<void> {
       return;
     }
 
-    const apiKey = process.env.ANTHROPIC_API_KEY;
-    if (!apiKey) {
-      throw new Error('ANTHROPIC_API_KEY is required to seed concepts from Anthropic.');
-    }
+    // const apiKey = process.env.ANTHROPIC_API_KEY;
+    // if (!apiKey) {
+    //   throw new Error('ANTHROPIC_API_KEY is required to seed concepts from Anthropic.');
+    // }
 
-    console.log(`Generating ${EXPECTED_CONCEPT_COUNT} concepts from Anthropic...`);
-    const concepts = await generateConceptsFromAnthropic(apiKey);
+    // console.log(`Generating ${EXPECTED_CONCEPT_COUNT} concepts from Anthropic...`);
+    // const concepts = await generateConceptsFromAnthropic(apiKey);
+
+    console.log('Loading concepts from static JSON file...');
+    const concepts = loadConceptsFromFile();
 
     console.log('Inserting concepts into database...');
     transaction(() => {

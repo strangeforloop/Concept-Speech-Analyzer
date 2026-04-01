@@ -9,7 +9,8 @@
     "dev": "nodemon --watch src --ext ts --exec \"tsx src/server.ts\"",
     "build": "tsc",
     "start": "node dist/server.js",
-    "seed": "tsx src/db/seed.ts"
+    "seed": "tsx src/db/seed.ts",
+    "export:concepts": "tsx export-concepts.ts"
   },
   "engines": {
     "node": ">=18"
